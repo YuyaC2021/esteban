@@ -17,7 +17,7 @@
                 <option value="red">Rojo</option>
                 <option value="pink">Rosado</option>
                 <option value="green">Verde</option>
-                <option value="yellow">Amarillo</option>
+                <option value="rgba(249, 204, 25)">Amarillo</option>
             </select>
         </div>
 
@@ -58,36 +58,40 @@
                 if(e.target.value=="green"){
                     $("#mario")[0].src="./img/luiggi.gif";
                     $("#position")[0].src="./img/luiggi_cart.jpg";
+                    $("#show_up")[0].src="./img/esteban_pic2.JPG";
                     counting=2;
                 }
                 else if(e.target.value=="pink"){
                     $("#mario")[0].src="./img/peach.gif";
                     $("#position")[0].src="./img/peach_cart.png";
+                    $("#show_up")[0].src="./img/esteban_pic3.JPG";
                     counting=1;
                 }
-                else if(e.target.value=="yellow"){
+                else if(e.target.value=="rgba(249, 204, 25)"){
                     $("#mario")[0].src="./img/bowser.gif";
                     $("#position")[0].src="./img/bowser_cart.jpg";
+                    $("#show_up")[0].src="./img/esteban_pic4.JPG";
                     counting=3;
                 }
                 else{
                     $("#mario")[0].src="./img/mario.gif";
                     $("#position")[0].src="./img/mario_cart.jpg";
+                    $("#show_up")[0].src="./img/esteban_pic4.JPG";
+
                     counting=0;
                 }
              
             });
 
             const toggling=()=>{
+                
                 if(toggleImg.style.display!="flex"){
                     toggleImg.style.display="flex"
                 }
                 else{
                     toggleImg.style.display="none"
                 }
-                $("#open_box").removeClass("animating");
-                $("#show_up").removeClass("showing");
-                $("#position").hide();
+                turnoff();
             }
 
             const open_box=()=>{
@@ -97,7 +101,6 @@
             }
 
             const mario=()=>{
-                console.log(counting);
                 if(counting==1){
                     $("#mario").addClass("running1");
                 }
@@ -108,13 +111,14 @@
                     $("#mario").addClass("running");
                 }
             }
+
             const turnoff=()=>{
                 $("#mario").removeClass("running1");
                 $("#mario").removeClass("running");
                 $("#mario").removeClass("dancing");
                 $("#open_box").removeClass("animating");
                 $("#show_up").removeClass("showing");
-                $("#position").hide(500);
+                $("#position").hide();
             }
             
         </script>
