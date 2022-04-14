@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/jquery.js"></script>
+    <title>Esteban</title>
+</head>
+<body>
+    <div class="colors">
+        <div class="names">
+            <h1 id="target_font" onclick="toggling()">Hola Esteban</h1>
+            <select name="" id="nameColor">
+                <option value="">Seleccionar color</option>
+                <option value="red">Rojo</option>
+                <option value="pink">Rosado</option>
+                <option value="green">Verde</option>
+                <option value="yellow">Amarillo</option>
+            </select>
+        </div>
+
+        <div id="toggle_img">
+            <div id="open_box">
+                <div class="decoration" onclick="open_box()">
+                    <div class="box1"></div>
+                </div>
+                <div class="box1" onclick="open_box()" id="boxColor1">
+                    <div>
+    
+                    </div>
+                </div>
+            </div>
+            <div class="box2" onclick="open_box()" id="boxColor2">
+                <div>
+                </div>
+            </div>
+        </div>
+
+        <img src="./img/esteban_pic.JPG" alt="Esteban" id="show_up" onclick="mario()">
+       
+        <img src="./img/mario.gif" alt="Mario" id="mario">
+
+        <img src="./img/mario_cart.jpg" alt="Mario" id="position">
+
+
+        <script>
+            const select=document.querySelector("#nameColor");
+            const target=document.querySelector("#target_font");
+            const toggleImg=document.querySelector("#toggle_img");
+            let counting;
+            select.addEventListener("change",(e)=>{
+                turnoff();
+                target.style.color=e.target.value;
+                $("#boxColor1")[0].style.backgroundColor=e.target.value;
+                $("#boxColor2")[0].style.backgroundColor=e.target.value;
+                if(e.target.value=="green"){
+                    $("#mario")[0].src="./img/luiggi.gif";
+                    $("#position")[0].src="./img/luiggi_cart.jpg";
+                    counting=2;
+                }
+                else if(e.target.value=="pink"){
+                    $("#mario")[0].src="./img/peach.gif";
+                    $("#position")[0].src="./img/peach_cart.png";
+                    counting=1;
+                }
+                else if(e.target.value=="yellow"){
+                    $("#mario")[0].src="./img/bowser.gif";
+                    $("#position")[0].src="./img/bowser_cart.jpg";
+                    counting=3;
+                }
+                else{
+                    $("#mario")[0].src="./img/mario.gif";
+                    $("#position")[0].src="./img/mario_cart.jpg";
+                    counting=0;
+                }
+             
+            });
+
+            const toggling=()=>{
+                if(toggleImg.style.display!="flex"){
+                    toggleImg.style.display="flex"
+                }
+                else{
+                    toggleImg.style.display="none"
+                }
+                $("#open_box").removeClass("animating");
+                $("#show_up").removeClass("showing");
+                $("#position").hide();
+            }
+
+            const open_box=()=>{
+                $("#open_box").addClass("animating");
+                $("#show_up").addClass("showing");
+                $("#position").show(500);
+            }
+
+            const mario=()=>{
+                console.log(counting);
+                if(counting==1){
+                    $("#mario").addClass("running1");
+                }
+                else if(counting==3){
+                    $("#mario").addClass("dancing");
+                }
+                else{
+                    $("#mario").addClass("running");
+                }
+            }
+            const turnoff=()=>{
+                $("#mario").removeClass("running1");
+                $("#mario").removeClass("running");
+                $("#mario").removeClass("dancing");
+                $("#open_box").removeClass("animating");
+                $("#show_up").removeClass("showing");
+                $("#position").hide(500);
+            }
+            
+        </script>
+    </div>
+   
+</body>
+</html>
